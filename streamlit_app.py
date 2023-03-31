@@ -19,12 +19,12 @@ def app():
  
     # Create a container element and center it vertically
     container = st.container()
-    container.vertical_alignment = "center"
+    container.horizontal_alignment = "center"
 
     # Display the image inside the container element and align it to the center
     with container:
-        st.image(img, caption="", align="center")
-        st.title("Welcome to the WVSU Alumni Dashboard", align='center')
+        st.image(img)
+        st.title("Welcome to the WVSU Alumni Dashboard")
         
     st.subheader("(c) 2023 WVSU Management Information System")
                  
