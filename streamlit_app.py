@@ -16,23 +16,23 @@ def get_file(campus='Main', year='2013'):
         if year=='2013':
             csvfile = '2013-main.csv'
         elif year=='2014':
-            csvfle = ''
+            csvfile = ''
         elif year=='2015':
-            csvfle = ''
+            csvfile = ''
         elif year=='2016':
-            csvfle = ''
+            csvfile = ''
         elif year=='2017':
-            csvfle = ''
+            csvfile = ''
         elif year=='2018':
-            csvfle = '2018-main.csv'
+            csvfile = '2018-main.csv'
         elif year=='2019':
-            csvfle = ''
+            csvfile = ''
         elif year=='2020':
-            csvfle = ''
+            csvfile = ''
         elif year=='2021':
-            csvfle = ''
+            csvfile = ''
         elif year=='2022':
-            csvfle = ''
+            csvfile = ''
     elif campus == 'Himamaylan':
         #add more csv files here
         csvfile = ''    
