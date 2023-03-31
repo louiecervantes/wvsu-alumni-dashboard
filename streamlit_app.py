@@ -17,6 +17,7 @@ def app():
     new_size = (200, 200)
     img = img.resize(new_size)
     st.image(img, align='center')
+    st.image(image, caption=" ", align="center")
 
     st.title("Welcome to the WVSU Alumni Dashboard", align='center')
     st.subheader("(c) 2023 WVSU Management Information System")
