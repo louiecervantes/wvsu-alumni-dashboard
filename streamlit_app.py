@@ -14,7 +14,8 @@ def app():
     
     # Load image from file
     img = Image.open("wvsu_logo.png")
-    img = img.resize(200,200)
+    new_size = (200, 200)
+    img = img.resize(new_size)
     st.image(img, width=200, caption="Example Image")
 
     st.title("Welcome to the WVSU Alumni Dashboard")
