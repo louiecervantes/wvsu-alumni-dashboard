@@ -28,7 +28,7 @@ def app():
         
     st.subheader("(c) 2023 WVSU Management Information System")
                  
-    st.write("This tool is managed by: \n
+    st.write("This tool is managed by: \n \
             Dr. Jonathan P. Glorial \n \
             Director \n \
             WVSU Alumni Office \n \
