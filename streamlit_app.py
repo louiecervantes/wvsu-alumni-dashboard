@@ -16,9 +16,16 @@ def app():
     img = Image.open("wvsu_logo.png")
     new_size = (200, 200)
     img = img.resize(new_size)
-    st.image(img, caption=" ", align="center")
+ 
+    # Create a container element and center it vertically
+    container = st.container()
+    container.vertical_alignment = "center"
 
-    st.title("Welcome to the WVSU Alumni Dashboard", align='center')
+    # Display the image inside the container element and align it to the center
+    with container:
+        st.image(img, caption="", align="center")
+        st.title("Welcome to the WVSU Alumni Dashboard", align='center')
+        
     st.subheader("(c) 2023 WVSU Management Information System")
                  
     st.write("This tool is managed by:")
