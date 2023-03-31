@@ -16,9 +16,9 @@ def app():
     img = Image.open("wvsu_logo.png")
     new_size = (200, 200)
     img = img.resize(new_size)
-    st.image(img, width=200, caption="Example Image")
+    st.image(img, use_column_width=True, output_format='auto', align='center')
 
-    st.title("Welcome to the WVSU Alumni Dashboard")
+    st.title("Welcome to the WVSU Alumni Dashboard", align='center')
     st.subheader("(c) 2023 WVSU Management Information System")
                  
     st.write("This tool is managed by:")
