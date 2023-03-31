@@ -38,7 +38,7 @@ def get_file(campus='Main', year='2013'):
         csvfile = ''    
     return csvfile
 
-def load_csvfile():
+def loadcsvfile():
     csvfile = ''
     csvfile = get_file(campus, year)
     if len(csvfile) > 0:     
@@ -91,10 +91,10 @@ def app():
     selected_option = st.selectbox('Select the year', options)
     if selected_option=='2013':
         year = selected_option
-        load_csvfile
+        loadcsvfile()
     else:
         year = selected_option
-        load_csvfile
+        loadcsvfile()
 
 # Run the app
 if __name__ == "__main__":
