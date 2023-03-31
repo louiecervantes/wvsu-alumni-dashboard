@@ -10,7 +10,7 @@ from scipy.stats import chi2_contingency
 from PIL import Image
 
 # helper function to get the CSV file
-def get_file(campus, year):
+def get_file(campus='Main', year='2013'):
     csvfile = ''
     if campus == 'Main':
         if year=='2013':
@@ -35,8 +35,9 @@ def get_file(campus, year):
             csvfle = ''
     elif campus == 'Himamaylan':
         #add more csv files here
+        csvfile = ''
         
-    return ssvfile
+    return csvfile
 
         
 # Define the Streamlit app
