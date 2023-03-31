@@ -50,7 +50,8 @@ def load_csvfile():
         if st.button('Begin'):
             st.write("Put some code here")
     else:
-        st.write('No data to process!')    
+        st.write('No data to process!')   
+    return
     
 # Define the Streamlit app
 def app():
@@ -94,10 +95,6 @@ def app():
     else:
         year = selected_option
         load_csvfile
-
-
-
-
 
 # Run the app
 if __name__ == "__main__":
