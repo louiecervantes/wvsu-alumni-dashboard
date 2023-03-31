@@ -38,7 +38,7 @@ def get_file(campus='Main', year='2013'):
         csvfile = ''    
     return csvfile
 
-def load_cavfile()
+def load_cavfile():
     csvfile = ''
     csvfile = get_file(campus, year)
     if len(csvfile) > 0:     
