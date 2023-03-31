@@ -35,11 +35,23 @@ def get_file(campus='Main', year='2013'):
             csvfle = ''
     elif campus == 'Himamaylan':
         #add more csv files here
-        csvfile = ''
-        
+        csvfile = ''    
     return csvfile
 
-        
+def load_cavfile()
+    csvfile = ''
+    csvfile = get_file(campus, year)
+    if len(csvfile) > 0:     
+        df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin')
+        st.dataframe(df, width=800, height=400)
+        st.write("Properties of the dataset")
+        desc = df.describe().T
+        st.write(desc)
+        if st.button('Begin'):
+            st.write("Put some code here")
+    else:
+        st.write('No data to process!')    
+    
 # Define the Streamlit app
 def app():
     
@@ -78,22 +90,12 @@ def app():
     selected_option = st.selectbox('Select the year', options)
     if selected_option=='2013':
         year = selected_option
+        load_csvfile
     else:
         year = selected_option
+        load_csvfile
 
-    csvfile = get_file(campus, year)
-    if len(csvfile) > 0:     
-        df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin')
-        st.dataframe(df, width=800, height=400)
-        st.write("Properties of the dataset")
-        desc = df.describe().T
-        st.write(desc)
-        
-    if st.button('Begin'):
-        st.write("Put some code here")
-    
-    else:
-        st.write('No data to process!')
+
 
 
 
