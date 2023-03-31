@@ -93,7 +93,7 @@ def app():
         st.write("Put some code here")
     
     else:
-        st.Write('No data to process!')
+        st.write('No data to process!')
 
 
 
