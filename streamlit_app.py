@@ -81,9 +81,9 @@ def app():
     else:
         year = selected_option
 
-    csv_file = get_file(campus, year)
+    csvfile = get_file(campus, year)
     if len(csvfile) > 0:     
-        df = pd.read_csv(csv_file, dtype='str', header=0, sep = ",", encoding='latin')
+        df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin')
         st.dataframe(df, width=800, height=400)
         st.write("Properties of the dataset")
         desc = df.describe().T
