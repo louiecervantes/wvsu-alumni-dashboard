@@ -13,7 +13,7 @@ import scipy.stats as stats
 def app():
     
     # Load image from file
-    img = Image.open("example_image.jpg")
+    img = Image.open("wvsu_logo.png")
     img = img.resize(200,200)
     st.image(img, width=200, caption="Example Image")
 
