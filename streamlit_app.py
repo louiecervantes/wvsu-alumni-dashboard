@@ -82,7 +82,7 @@ def app():
         year = selected_option
 
     csv_file = get_file(campus, year)
-    lf len(csvfile)) > 0:     
+    if len(csvfile) > 0:     
         df = pd.read_csv(csv_file, dtype='str', header=0, sep = ",", encoding='latin')
         st.dataframe(df, width=800, height=400)
         st.write("Properties of the dataset")
