@@ -33,7 +33,7 @@ def get_file(campus, year):
             csvfle = ''
         elif year=='2022':
             csvfle = ''
-    elif campus == 'Himamaylan:
+    elif campus == 'Himamaylan':
         #add more csv files here
         
     return ssvfile
