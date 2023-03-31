@@ -9,6 +9,36 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.stats import chi2_contingency
 from PIL import Image
 
+# helper function to get the CSV file
+def get_file(campus, year):
+    csvfile = ''
+    if campus == 'Main':
+        if year=='2013':
+            csvfile = '2013-main.csv'
+        elif year=='2014':
+            csvfle = ''
+        elif year=='2015':
+            csvfle = ''
+        elif year=='2016':
+            csvfle = ''
+        elif year=='2017':
+            csvfle = ''
+        elif year=='2018':
+            csvfle = '2018-main.csv'
+        elif year=='2019':
+            csvfle = ''
+        elif year=='2020':
+            csvfle = ''
+        elif year=='2021':
+            csvfle = ''
+        elif year=='2022':
+            csvfle = ''
+    elif campus == 'Himamaylan:
+        #add more csv files here
+        
+    return ssvfile
+
+        
 # Define the Streamlit app
 def app():
     
@@ -33,14 +63,38 @@ def app():
     st.write("A university alumni dashboard is a visual representation of data that provides insights into the institution's alumni network. It typically includes key performance indicators such as demographics, employment status, industry and job titles, alumni engagement, student success, alumni feedback, social media engagement, giving history, and contact information. The dashboard is designed to provide a quick and easy way for university administrators to monitor and analyze data related to their alumni network, identify trends, and make data-driven decisions to improve alumni relations and engagement.")
 
     st.subheader("Demographics")
-    df = pd.read_csv('2013-main.csv', dtype='str', header=0, sep = ",", encoding='latin')
-    st.dataframe(df, width=800, height=400)
-    st.write("Properties of the dataset")
-    desc = df.describe().T
-    st.write(desc)
+    campus = 'Main'
+    options = ['Main', 'Calinog', 'Himamaylan', 'Janiuay', 'Lambunao', 'Pototan','All']
+    selected_option = st.selectbox('Select the campus', options)
+    if selected_option=='Main':
+        campus = selected_option
+    else:
+        campus = selected_option
 
+    year = '2013'
+    options = ['2013', '2014', '2015', '2016', '2017', '2018','2019', '2020', '2021', '2022']
+    
+    selected_option = st.selectbox('Select the year', options)
+    if selected_option=='2013':
+        year = selected_option
+    else:
+        year = selected_option
+
+    csv_file = get_file(campus, year)
+    lf len(csvfile) > 0:     
+        df = pd.read_csv(csv_file, dtype='str', header=0, sep = ",", encoding='latin')
+        st.dataframe(df, width=800, height=400)
+        st.write("Properties of the dataset")
+        desc = df.describe().T
+        st.write(desc)
+        
     if st.button('Begin'):
         st.write("Put some code here")
+    
+    else:
+        st.Write('No data to process!')
+
+
 
 # Run the app
 if __name__ == "__main__":
