@@ -28,7 +28,7 @@ def app():
         
     st.subheader("(c) 2023 WVSU Management Information System")
                  
-    st.write("This dashboard is managed by: Dr. Jonathan P. Glorial Director, WVSU Alumni Office \nalumni@wvsu.edu.ph")
+    st.write("This dashboard is managed by: \nDr. Jonathan P. Glorial \nDirector, WVSU Alumni Office \nalumni@wvsu.edu.ph")
                  
     st.write("A university alumni dashboard is a visual representation of data that provides insights into the institution's alumni network. It typically includes key performance indicators such as demographics, employment status, industry and job titles, alumni engagement, student success, alumni feedback, social media engagement, giving history, and contact information. The dashboard is designed to provide a quick and easy way for university administrators to monitor and analyze data related to their alumni network, identify trends, and make data-driven decisions to improve alumni relations and engagement.")
 
