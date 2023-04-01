@@ -9,8 +9,6 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.stats import chi2_contingency
 from PIL import Image
 
-hasData = False
-
 # helper function to get the CSV file
 def get_file(campus='Main', year='2013'):
     csvfile = ''
@@ -59,7 +57,7 @@ def loadcsvfile(campus, year):
     else:
         hasData = False
         st.write('No data to process!')   
-    return
+    return hasData
     
 # Define the Streamlit app
 def app():
@@ -96,14 +94,15 @@ def app():
     year = '2013'
     options = ['2013', '2014', '2015', '2016', '2017', '2018','2019', '2020', '2021', '2022']
     
+    hasData - false
+    
     selected_option = st.selectbox('Select the year', options)
     if selected_option=='2013':
         year = selected_option
-        loadcsvfile(campus, year)
+        hasData = loadcsvfile(campus, year)
     else:
         year = selected_option
-        loadcsvfile(campus, year)
-    
+        hasData = loadcsvfile(campus, year)
     
     
     if st.button('By Gender'):
