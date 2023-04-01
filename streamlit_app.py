@@ -94,10 +94,10 @@ def loadcsvfile(campus, year):
             custom_colours = ['#ff7675', '#74b9ff']
 
             fig = plt.figure(figsize=(12, 4))
-            plt.subplot(2, 2, 1)
+            plt.subplot(2, 1, 1)
             plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, 
                    autopct='%1.0f%%', colors=custom_colours)
-            plt.subplot(2, 2, 2)
+            plt.subplot(2, 1, 2)
             sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis') 
             st.pyplot(fig)         
             
