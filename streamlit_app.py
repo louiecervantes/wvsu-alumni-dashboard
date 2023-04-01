@@ -48,6 +48,7 @@ def loadcsvfile(campus, year):
         desc = df.describe().T
         st.write(desc)
         if st.button('Start'):
+            #Gender
             st.write("Distribution by gender")
             scounts=df['GENDER'].value_counts()
             labels = list(scounts.index)
@@ -59,6 +60,14 @@ def loadcsvfile(campus, year):
             plt.subplot(1, 2, 2)
             sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
             st.pyplot(fig)
+            #Province
+            value_counts = df['MUNICIPAL/ CITY'].value_counts(normalize=True)
+            value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+            value_counts.name = 'Percentage'
+            result = pd.concat([df['MUNICIPAL/ CITY'].value_counts(), value_counts], axis=1)
+            result.columns = ['Counts', 'Percentage']
+
+            st.write(pd.DataFrame(result))         
         
             
     else:
