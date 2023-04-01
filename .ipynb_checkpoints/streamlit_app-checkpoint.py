@@ -57,7 +57,7 @@ def loadcsvfile(campus, year):
     else:
         hasData = False
         st.write('No data to process!')   
-    return hasData
+    return hasData, df
     
 # Define the Streamlit app
 def app():
@@ -95,14 +95,15 @@ def app():
     options = ['2013', '2014', '2015', '2016', '2017', '2018','2019', '2020', '2021', '2022']
     
     hasData = False
+    df = pd.DataFrame()
     
     selected_option = st.selectbox('Select the year', options)
     if selected_option=='2013':
         year = selected_option
-        hasData = loadcsvfile(campus, year)
+        hasData, df = loadcsvfile(campus, year)
     else:
         year = selected_option
-        hasData = loadcsvfile(campus, year)
+        hasData, df = loadcsvfile(campus, year)
     
     if st.button('By Gender'):
         if hasData==True:
