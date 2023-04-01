@@ -60,7 +60,9 @@ def loadcsvfile(campus, year):
             plt.subplot(1, 2, 2)
             sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
             st.pyplot(fig)
-            #Province
+            
+            #Municipality
+            st.write('Distribution by municipality')
             value_counts = df['MUNICIPAL/ CITY'].value_counts(normalize=True)
             value_counts = value_counts.mul(100).round(2).astype(str) + '%'
             value_counts.name = 'Percentage'
