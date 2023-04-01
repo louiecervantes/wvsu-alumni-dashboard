@@ -68,7 +68,6 @@ def loadcsvfile(campus, year):
             value_counts.name = 'Percentage'
             result = pd.concat([df['MUNICIPAL/ CITY'].value_counts(), value_counts], axis=1)
             result.columns = ['Counts', 'Percentage']
-
             st.write(pd.DataFrame(result))   
             
             #Province
@@ -77,6 +76,17 @@ def loadcsvfile(campus, year):
             p = sns.countplot(x="PROVINCE", data = df, palette="muted")
             _ = plt.setp(p.get_xticklabels(), rotation=90)
             st.pyplot(fig)
+            
+            #tabular data
+            # get value counts and percentages of unique values in column 
+            value_counts = df['PROVINCE'].value_counts(normalize=True)
+            value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+            value_counts.name = 'Percentage'
+            result = pd.concat([df['PROVINCE'].value_counts(), value_counts], axis=1)
+            result.columns = ['Counts', 'Percentage']
+            st.write(pd.DataFrame(result))  
+
+pd.DataFrame(result)
          
             
     else:
