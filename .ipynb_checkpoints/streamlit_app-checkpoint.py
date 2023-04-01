@@ -77,7 +77,7 @@ def loadcsvfile(campus, year):
             p = sns.countplot(x="PROVINCE", data = df, palette="muted")
             _ = plt.setp(p.get_xticklabels(), rotation=90)
             st.pyplot(fig)
-        
+         
             
     else:
         st.write('No data to process!')   
