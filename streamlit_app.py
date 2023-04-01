@@ -101,7 +101,7 @@ def loadcsvfile(campus, year):
             sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis') 
             st.pyplot(fig)   
             
-            st.write("Alumni distributed by degree program')
+            st.write('Alumni distributed by degree program')
             st.write(df['DEGREE PROGRAM'].value_counts())
             
             
