@@ -78,13 +78,28 @@ def loadcsvfile(campus, year):
             st.pyplot(fig)
             
             #tabular data
+            st.write(No. of graduates per province")
             # get value counts and percentages of unique values in column 
             value_counts = df['PROVINCE'].value_counts(normalize=True)
             value_counts = value_counts.mul(100).round(2).astype(str) + '%'
             value_counts.name = 'Percentage'
             result = pd.concat([df['PROVINCE'].value_counts(), value_counts], axis=1)
             result.columns = ['Counts', 'Percentage']
-            st.write(pd.DataFrame(result))  
+            st.write(pd.DataFrame(result))
+            
+            st.write('Distribution by Province')
+            scounts=df['PROVINCE'].value_counts()
+            labels = list(scounts.index)
+            sizes = list(scounts.values)
+            custom_colours = ['#ff7675', '#74b9ff']
+
+            fig = plt.figure(figsize=(12, 4))
+            plt.subplot(1, 2, 1)
+            plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, 
+                   autopct='%1.0f%%', colors=custom_colours)
+            plt.subplot(1, 2, 2)
+            sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis') 
+            st.pyplot(fig)         
             
     else:
         st.write('No data to process!')   
