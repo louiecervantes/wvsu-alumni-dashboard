@@ -112,12 +112,14 @@ def loadcsvfile(campus, year):
             college = 'CAS'
             options = df['COLLEGE'].unique()
             selected_option = st.selectbox('Select the college', options)
+            
+            filtered_df = ''
             if selected_option=='CAS':
                 college = selected_option
-                filterBy(df, college)
+                filtered_df = filterBy(df, college)
             else:
                 college = selected_option
-                filterBy(df, college)
+                filtered_df = filterBy(df, college)
                 
             st.write('Graduates distributed per program under the college: ' + college)
             fig = plt.figure(figsize=(6, 2))
