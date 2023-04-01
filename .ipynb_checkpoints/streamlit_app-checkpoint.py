@@ -220,7 +220,7 @@ def app():
         else:
             st.write("No data to process!")
 
- if st.button('Gender Distribution by College'):
+    if st.button('Gender Distribution by College'):
         if hasData==True:
             fig = plt.figure(figsize=(6,4))
             p = sns.countplot(x='COLLEGE', data = df, hue='GENDER', palette='bright')
