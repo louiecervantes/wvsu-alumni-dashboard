@@ -123,7 +123,7 @@ def loadcsvfile(campus, year):
                 
             st.write('Graduates distributed per program under the college: ' + college)
             fig = plt.figure(figsize=(6, 2))
-            p = sns.countplot(x="DEGREE PROGRAM", data = flitered_df, palette="muted")
+            p = sns.countplot(x="DEGREE PROGRAM", data = filtered_df, palette="muted")
             _ = plt.setp(p.get_xticklabels(), rotation=90)
             st.pyplot(fig)  
             
