@@ -93,7 +93,7 @@ def loadcsvfile(campus, year):
             sizes = list(scounts.values)
             custom_colours = ['#ff7675', '#74b9ff']
 
-            fig = plt.figure(figsize=(4, 12))
+            fig = plt.figure(figsize=(6, 10))
             plt.subplot(2, 1, 1)
             plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, 
                    autopct='%1.0f%%', colors=custom_colours)
