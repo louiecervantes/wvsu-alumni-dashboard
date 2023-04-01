@@ -78,7 +78,7 @@ def loadcsvfile(campus, year):
             st.pyplot(fig)
             
             #tabular data
-            st.write(No. of graduates per province")
+            st.write('No. of graduates per province')
             # get value counts and percentages of unique values in column 
             value_counts = df['PROVINCE'].value_counts(normalize=True)
             value_counts = value_counts.mul(100).round(2).astype(str) + '%'
