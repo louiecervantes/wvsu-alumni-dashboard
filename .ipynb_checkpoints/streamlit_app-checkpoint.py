@@ -39,14 +39,8 @@ def get_file(campus='Main', year='2013'):
     return csvfile
 
 def filterBy(df, college):
-    filtered_df = df[df['COLLEGE'] == college]
-    st.write('Graduates distributed per program under the college: ' + college)
-    fig = plt.figure(figsize=(6, 2))
-    p = sns.countplot(x="DEGREE PROGRAM", data = df, palette="muted")
-    _ = plt.setp(p.get_xticklabels(), rotation=90)
-    st.pyplot(fig)    
-    
-    return
+    filtered_df = df[df['COLLEGE'] == college]  
+    return filtered_df
 
 def loadcsvfile(campus, year):
     csvfile = ''
@@ -124,6 +118,12 @@ def loadcsvfile(campus, year):
             else:
                 college = selected_option
                 filterBy(df, college)
+                
+            st.write('Graduates distributed per program under the college: ' + college)
+            fig = plt.figure(figsize=(6, 2))
+            p = sns.countplot(x="DEGREE PROGRAM", data = flitered_df, palette="muted")
+            _ = plt.setp(p.get_xticklabels(), rotation=90)
+            st.pyplot(fig)  
             
             
     else:
