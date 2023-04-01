@@ -62,14 +62,21 @@ def loadcsvfile(campus, year):
             st.pyplot(fig)
             
             #Municipality
-            st.write('Distribution by municipality')
+            st.write('Distribution by Municipality/City')
             value_counts = df['MUNICIPAL/ CITY'].value_counts(normalize=True)
             value_counts = value_counts.mul(100).round(2).astype(str) + '%'
             value_counts.name = 'Percentage'
             result = pd.concat([df['MUNICIPAL/ CITY'].value_counts(), value_counts], axis=1)
             result.columns = ['Counts', 'Percentage']
 
-            st.write(pd.DataFrame(result))         
+            st.write(pd.DataFrame(result))   
+            
+            #Province
+            st.write('Distribution by Province')
+            fig = plt.figure(figsize=(6, 2))
+            p = sns.countplot(x="PROVINCE", data = df, palette="muted")
+            _ = plt.setp(p.get_xticklabels(), rotation=90)
+            st.pyplot(fig)
         
             
     else:
