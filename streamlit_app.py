@@ -9,6 +9,8 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.stats import chi2_contingency
 from PIL import Image
 
+hasData = False
+
 # helper function to get the CSV file
 def get_file(campus='Main', year='2013'):
     csvfile = ''
@@ -45,90 +47,15 @@ def filterBy(df, college):
 def loadcsvfile(campus, year):
     csvfile = ''
     csvfile = get_file(campus, year)
-    if len(csvfile) > 0:     
+    if len(csvfile) > 0:
+        hasData = True
         df = pd.read_csv(csvfile, dtype='str', header=0, sep = ",", encoding='latin')
         st.dataframe(df, width=800, height=400)
         st.write("Properties of the dataset")
         desc = df.describe().T
-        st.write(desc)
-        if st.button('Start'):
-            #Gender
-            st.write("Distribution by gender")
-            scounts=df['GENDER'].value_counts()
-            labels = list(scounts.index)
-            sizes = list(scounts.values)
-            custom_colours = ['#ff7675', '#74b9ff']
-            fig = plt.figure(figsize=(12, 4))
-            plt.subplot(1, 2, 1)
-            plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
-            plt.subplot(1, 2, 2)
-            sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
-            st.pyplot(fig)
-            
-            #Municipality
-            st.write('Distribution by Municipality/City')
-            value_counts = df['MUNICIPAL/ CITY'].value_counts(normalize=True)
-            value_counts = value_counts.mul(100).round(2).astype(str) + '%'
-            value_counts.name = 'Percentage'
-            result = pd.concat([df['MUNICIPAL/ CITY'].value_counts(), value_counts], axis=1)
-            result.columns = ['Counts', 'Percentage']
-            st.write(pd.DataFrame(result))   
-            
-            #Province
-            st.write('Distribution by Province')
-            fig = plt.figure(figsize=(6, 2))
-            p = sns.countplot(x="PROVINCE", data = df, palette="muted")
-            _ = plt.setp(p.get_xticklabels(), rotation=90)
-            st.pyplot(fig)
-            
-            #tabular data
-            st.write('No. of graduates per province')
-            # get value counts and percentages of unique values in column 
-            value_counts = df['PROVINCE'].value_counts(normalize=True)
-            value_counts = value_counts.mul(100).round(2).astype(str) + '%'
-            value_counts.name = 'Percentage'
-            result = pd.concat([df['PROVINCE'].value_counts(), value_counts], axis=1)
-            result.columns = ['Counts', 'Percentage']
-            st.write(pd.DataFrame(result))
-            
-            st.write('Distribution by Province')
-            scounts=df['PROVINCE'].value_counts()
-            labels = list(scounts.index)
-            sizes = list(scounts.values)
-            custom_colours = ['#ff7675', '#74b9ff']
-
-            fig = plt.figure(figsize=(6, 10))
-            plt.subplot(2, 1, 1)
-            plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, 
-                   autopct='%1.0f%%', colors=custom_colours)
-            plt.subplot(2, 1, 2)
-            sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis') 
-            st.pyplot(fig)   
-            
-            st.write('Alumni distributed by degree program')
-            st.write(df['DEGREE PROGRAM'].value_counts())
-            
-            st.write('Filter by college')
-            college = 'CAS'
-            options = df['COLLEGE'].unique()
-            selected_option = st.selectbox('Select the college', options)
-            
-            filtered_df = ''
-            if selected_option=='CAS':
-                college = selected_option
-                filtered_df = filterBy(df, college)
-            else:
-                college = selected_option
-                filtered_df = filterBy(df, college)
-                
-            st.write('Graduates distributed per program under the college: ' + college)
-            fig = plt.figure(figsize=(6, 2))
-            p = sns.countplot(x="DEGREE PROGRAM", data = filtered_df, palette="muted")
-            _ = plt.setp(p.get_xticklabels(), rotation=90)
-            st.pyplot(fig)  
-            
-            
+        st.write(desc)      
     else:
+        hasData = False
         st.write('No data to process!')   
     return
     
@@ -170,10 +97,101 @@ def app():
     selected_option = st.selectbox('Select the year', options)
     if selected_option=='2013':
         year = selected_option
-        loadcsvfile(campus, year)
     else:
         year = selected_option
-        loadcsvfile(campus, year)
+    
+    loadcsvfile(campus, year)
+    
+     if st.button('By Gender'):
+        if hasData==True:
+            #Gender
+            st.write("Distribution by gender")
+            scounts=df['GENDER'].value_counts()
+            labels = list(scounts.index)
+            sizes = list(scounts.values)
+            custom_colours = ['#ff7675', '#74b9ff']
+            fig = plt.figure(figsize=(12, 4))
+            plt.subplot(1, 2, 1)
+            plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, autopct='%1.0f%%', colors=custom_colours)
+            plt.subplot(1, 2, 2)
+            sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis')
+            st.pyplot(fig)
+        else:
+            st.write("No data to process!")
+            
+    if st.button("By Municipality"):
+        if hasData==True:
+            #Municipality
+            st.write('Distribution by Municipality/City')
+            value_counts = df['MUNICIPAL/ CITY'].value_counts(normalize=True)
+            value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+            value_counts.name = 'Percentage'
+            result = pd.concat([df['MUNICIPAL/ CITY'].value_counts(), value_counts], axis=1)
+            result.columns = ['Counts', 'Percentage']
+            st.write(pd.DataFrame(result))  
+        else:
+            st.write('No data to process!')
+            
+    if st.button("By Province"):
+        if hasData==True:
+            #Province
+            st.write('Distribution by Province')
+            fig = plt.figure(figsize=(6, 2))
+            p = sns.countplot(x="PROVINCE", data = df, palette="muted")
+            _ = plt.setp(p.get_xticklabels(), rotation=90)
+            st.pyplot(fig)
+            
+            #tabular data
+            st.write('No. of graduates per province')
+            # get value counts and percentages of unique values in column 
+            value_counts = df['PROVINCE'].value_counts(normalize=True)
+            value_counts = value_counts.mul(100).round(2).astype(str) + '%'
+            value_counts.name = 'Percentage'
+            result = pd.concat([df['PROVINCE'].value_counts(), value_counts], axis=1)
+            result.columns = ['Counts', 'Percentage']
+            st.write(pd.DataFrame(result))
+            
+            st.write('Distribution by Province')
+            scounts=df['PROVINCE'].value_counts()
+            labels = list(scounts.index)
+            sizes = list(scounts.values)
+            custom_colours = ['#ff7675', '#74b9ff']
+
+            fig = plt.figure(figsize=(6, 10))
+            plt.subplot(2, 1, 1)
+            plt.pie(sizes, labels = labels, textprops={'fontsize': 10}, startangle=140, 
+                   autopct='%1.0f%%', colors=custom_colours)
+            plt.subplot(2, 1, 2)
+            sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis') 
+            st.pyplot(fig)   
+        else:
+            st.write("No data to process!")
+            
+    if st.button("By Degree Program"):
+        if hasData==True:    
+            st.write('Alumni distributed by degree program')
+            st.write(df['DEGREE PROGRAM'].value_counts())
+            
+            st.write('Filter by college')
+            college = 'CAS'
+            options = df['COLLEGE'].unique()
+            selected_option = st.selectbox('Select the college', options)
+            
+            filtered_df = ''
+            if selected_option=='CAS':
+                college = selected_option
+                filtered_df = filterBy(df, college)
+            else:
+                college = selected_option
+                filtered_df = filterBy(df, college)
+                
+            st.write('Graduates distributed per program under the college: ' + college)
+            fig = plt.figure(figsize=(6, 2))
+            p = sns.countplot(x="DEGREE PROGRAM", data = filtered_df, palette="muted")
+            _ = plt.setp(p.get_xticklabels(), rotation=90)
+            st.pyplot(fig)      
+        else:
+            st.write("No data to process!")
 
 # Run the app
 if __name__ == "__main__":
