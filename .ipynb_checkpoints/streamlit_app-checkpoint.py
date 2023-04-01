@@ -220,6 +220,15 @@ def app():
         else:
             st.write("No data to process!")
 
+ if st.button('Gender Distribution by College'):
+        if hasData==True:
+            fig = plt.figure(figsize=(6,4))
+            p = sns.countplot(x='COLLEGE', data = df, hue='GENDER', palette='bright')
+            _ = plt.setp(p.get_xticklabels(), rotation=90)
+            st.plot(fig)
+        else:
+            st.write('No data to process!')
+            
 # Run the app
 if __name__ == "__main__":
     app()
