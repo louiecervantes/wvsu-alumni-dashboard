@@ -102,7 +102,7 @@ def app():
     
     loadcsvfile(campus, year)
     
-     if st.button('By Gender'):
+    if st.button('By Gender'):
         if hasData==True:
             #Gender
             st.write("Distribution by gender")
