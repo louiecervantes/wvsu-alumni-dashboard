@@ -99,7 +99,11 @@ def loadcsvfile(campus, year):
                    autopct='%1.0f%%', colors=custom_colours)
             plt.subplot(2, 1, 2)
             sns.barplot(x = scounts.index, y = scounts.values, palette= 'viridis') 
-            st.pyplot(fig)         
+            st.pyplot(fig)   
+            
+            st.write("Alumni distributed by degree program')
+            st.write(df['DEGREE PROGRAM'].value_counts())
+            
             
     else:
         st.write('No data to process!')   
