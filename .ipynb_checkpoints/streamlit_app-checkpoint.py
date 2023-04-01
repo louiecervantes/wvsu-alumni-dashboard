@@ -85,7 +85,7 @@ def loadcsvfile(campus, year):
             result = pd.concat([df['PROVINCE'].value_counts(), value_counts], axis=1)
             result.columns = ['Counts', 'Percentage']
             st.write(pd.DataFrame(result))  
-                     
+            
     else:
         st.write('No data to process!')   
     return
