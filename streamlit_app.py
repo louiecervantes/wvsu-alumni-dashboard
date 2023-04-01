@@ -174,27 +174,32 @@ def app():
         if hasData==True:    
             st.write('Alumni distributed by degree program')
             st.write(df['DEGREE PROGRAM'].value_counts())
-            
-            st.write('Filter by college')
-            college = 'CAS'
-            options = df['COLLEGE'].unique()
-            selected_option = st.selectbox('Select the college', options)
-            
-            filtered_df = ''
-            if selected_option=='CAS':
-                college = selected_option
-                filtered_df = filterBy(df, college)
-            else:
-                college = selected_option
-                filtered_df = filterBy(df, college)
-                
-            st.write('Graduates distributed per program under the college: ' + college)
-            fig = plt.figure(figsize=(6, 2))
-            p = sns.countplot(x="DEGREE PROGRAM", data = filtered_df, palette="muted")
-            _ = plt.setp(p.get_xticklabels(), rotation=90)
-            st.pyplot(fig)      
         else:
             st.write("No data to process!")
+
+    if hasData==True:    
+        st.write('Filter by college')
+        college = 'CAS'
+        options = df['COLLEGE'].unique()
+        selected_option = st.selectbox('Select the college', options)
+
+        filtered_df = pd.DataFrame()
+        
+        if selected_option=='CAS':
+            college = selected_option
+            filtered_df = filterBy(df, college)
+        else:
+            college = selected_option
+            filtered_df = filterBy(df, college)
+
+        st.write('Graduates distributed per program under the college: ' + college)
+        fig = plt.figure(figsize=(6, 2))
+        p = sns.countplot(x="DEGREE PROGRAM", data = filtered_df, palette="muted")
+        _ = plt.setp(p.get_xticklabels(), rotation=90)
+        st.pyplot(fig) 
+    else:
+        st.write('No data to process!')
+
 
 # Run the app
 if __name__ == "__main__":
