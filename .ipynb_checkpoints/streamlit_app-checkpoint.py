@@ -99,10 +99,12 @@ def app():
     selected_option = st.selectbox('Select the year', options)
     if selected_option=='2013':
         year = selected_option
+        loadcsvfile(campus, year)
     else:
         year = selected_option
+        loadcsvfile(campus, year)
     
-    loadcsvfile(campus, year)
+    
     
     if st.button('By Gender'):
         if hasData==True:
