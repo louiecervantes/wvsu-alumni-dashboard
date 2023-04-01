@@ -104,7 +104,6 @@ def app():
         year = selected_option
         hasData = loadcsvfile(campus, year)
     
-    
     if st.button('By Gender'):
         if hasData==True:
             #Gender
