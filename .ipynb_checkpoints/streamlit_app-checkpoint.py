@@ -228,7 +228,11 @@ def app():
             st.pyplot(fig)
         else:
             st.write('No data to process!')
+    st.subheader('Alumni engangement')
+    st.write('Under development')
+    st.subheader('Contact Information')
+    st.write('Under development')
             
-# Run the app
+#run the app
 if __name__ == "__main__":
     app()
